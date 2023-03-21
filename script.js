@@ -26,16 +26,16 @@ Sulla base di queste informazioni dovrà calcolare il prezzo totale del bigliett
 const nameInput = document.getElementById('name-input');
 const kmInputs = document.getElementById('km-inputs');
 const ageSelect = document.getElementById('age-select');
-const ageValue = ageSelect.value
 const generateBtn = document.querySelector('.generate-btn');
 const resetBtn = document.querySelector('.reset-btn');
 
 let userPrice;
+let underagePrice;
+let over65Price;
 
 console.log(nameInput);
 console.log(kmInputs);
 console.log(ageSelect);
-console.log(ageValue);
 console.log(generateBtn);
 console.log(resetBtn);
 
@@ -44,9 +44,37 @@ generateBtn.addEventListener('click', function(){
   const kmValue = parseFloat(kmInputs.value);
   userPrice = .21 * kmValue;
   console.log(userPrice);
-  console.log(`Il prezzo per ${kmValue}km è ${userPrice}€.`);
+  console.log(`Il prezzo standard per ${kmValue}km è ${userPrice.toFixed(2)}€`);
+  
+  // sconto del 20% per minorenni
+  
+  let ageValue = ageSelect.value;
+  if(ageValue == 'underage' ){ 
+    underagePrice = userPrice - (userPrice * .20);
+    console.log('underagePrice', underagePrice);
+    console.log(`Il prezzo finale scontato del 20% per minorenni è di ${underagePrice.toFixed(2)}€`);
+    
+  }
+
+  // sconto del 40% per over65
+  else if(ageValue == 'over65'){
+    over65Price = userPrice - (userPrice * .40);
+    console.log('over65Price', over65Price);
+    console.log(`Il prezzo finale scontato del 20% per gli over 65 è di ${over65Price.toFixed(2)}€`);
+
+  }
+
+
+
 
 });
+
+
+
+
+
+
+
 
 
 
