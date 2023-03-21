@@ -20,8 +20,7 @@ Sulla base di queste informazioni dovrà calcolare il prezzo totale del bigliett
 // - creo una variabile con la Math random per generare un numero casuale random da 1 a 99999 per il codice CP 
 // - creo un EventListener per generare l'output cioè mostrare i dati inseriti negli input nel momento in cui viene cliccato il pulsante "Genera"
 // - creo una variabile booleana ed un EventListener per nascondere e mostrare i dati del biglietto nel momento in cui viene cliccato il pulsante "Genera"
-
-
+// - creo un EventListener per resettare tutti i dati e far sparire il biglietto generato
 
 const nameInput = document.getElementById('name-input');
 const kmInputs = document.getElementById('km-inputs');
@@ -32,6 +31,7 @@ const resetBtn = document.querySelector('.reset-btn');
 let userPrice;
 let underagePrice;
 let over65Price;
+
 
 console.log(nameInput);
 console.log(kmInputs);
@@ -45,6 +45,10 @@ generateBtn.addEventListener('click', function(){
   userPrice = .21 * kmValue;
   console.log(userPrice);
   console.log(`Il prezzo standard per ${kmValue}km è ${userPrice.toFixed(2)}€`);
+
+  const nameValue = nameInput.value;
+  document.querySelector('.name').innerHTML = `${nameValue}`;
+
   
   // sconto del 20% per minorenni
   
@@ -53,21 +57,29 @@ generateBtn.addEventListener('click', function(){
     underagePrice = userPrice - (userPrice * .20);
     console.log('underagePrice', underagePrice);
     console.log(`Il prezzo finale scontato del 20% per minorenni è di ${underagePrice.toFixed(2)}€`);
-    
-  }
+    document.querySelector('.ticket-cost').innerHTML = `${underagePrice.toFixed(2)}€`;
+    document.querySelector('.offer').innerHTML = `Biglietto scontato del 20% per minorenni`;
+
+    }
 
   // sconto del 40% per over65
   else if(ageValue == 'over65'){
     over65Price = userPrice - (userPrice * .40);
     console.log('over65Price', over65Price);
-    console.log(`Il prezzo finale scontato del 20% per gli over 65 è di ${over65Price.toFixed(2)}€`);
+    console.log(`Il prezzo finale scontato del 40% per gli over 65 è di ${over65Price.toFixed(2)}€`);
+    document.querySelector('.ticket-cost').innerHTML = `${over65Price.toFixed(2)}€`;
+    document.querySelector('.offer').innerHTML = `Biglietto scontato del 40% per over 65`;
 
   }
 
-
-
+  else{
+    console.log(`Il prezzo finale per un adulto è di ${userPrice.toFixed(2)}€`);
+    document.querySelector('.ticket-cost').innerHTML = `${userPrice.toFixed(2)}€`;
+    document.querySelector('.offer').innerHTML = `Biglietto standard`;
+  }
 
 });
+
 
 
 
