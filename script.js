@@ -28,6 +28,9 @@ const ageSelect = document.getElementById('age-select');
 const generateBtn = document.querySelector('.generate-btn');
 const resetBtn = document.querySelector('.reset-btn');
 
+let carriage = document.querySelector('.carriage');
+let codeCp = document.querySelector('.code-cp');
+
 let userPrice;
 let underagePrice;
 let over65Price;
@@ -103,45 +106,25 @@ generateBtn.addEventListener('click', function(){
   //   // console.log('false');
   // }
 
-});
 
 
-// * Anche in questo modo funziona per Far comparire e sparire il biglietto
-//! generateBtn.addEventListener('click', function(){
-  // // toggle ticket
-  // const ticket = document.querySelector('.ticket');
-  // // se il flag vedo testo è true aggiungo la classe d-none
-  // if(ticketGenerated){
-  //   ticket.classList.remove('d-none');
-  //   // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
-  //   ticketGenerated = !ticketGenerated;
-  //   // console.log('true');
-  //   // altrimenti la rimuovo
-  // }else{
-  //   ticket.classList.add('d-none');
-  //   // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
-  //   ticketGenerated = !ticketGenerated;
-  //   // console.log('false');
-  // }
-//! });
-
-
-
-// * button reset
-resetBtn.addEventListener('click', function(){
-  // * per rimuovere il biglietto 
-  ticket.classList.add('d-none');
-  ticketGenerated = true;
+  // * generare un numero random da 1 a 5
+  const maxCarriage = 5;
   
-  // * pulire gli input
-  nameInput.value = "";
-  kmInputs.value = ""; 
-  ageSelect.value = "";
+  // ottendo un random da 1 a 5
+  // console.log(Math.ceil(Math.random() * max));
+  // altra soluzione
+  console.log(Math.floor(Math.random() * maxCarriage) + 1);
+  carriage = (Math.floor(Math.random() * maxCarriage) + 1);
+  document.querySelector('.carriage').innerHTML = `${carriage}`;
+  
+  
+  // * generare un numero random fino  da 1 a 99999
+  const maxCode = 99999;
+  codeCp = (Math.floor(Math.random() * maxCode) + 1);
+  document.querySelector('.code-cp').innerHTML = `${codeCp}`;
 
 });
-
-
-
 
 
 
