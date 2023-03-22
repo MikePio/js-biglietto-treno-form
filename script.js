@@ -33,6 +33,7 @@ let underagePrice;
 let over65Price;
 
 let ticketGenerated = true;
+let ticket = document.querySelector('.ticket');
 
 
 console.log(nameInput);
@@ -50,6 +51,8 @@ generateBtn.addEventListener('click', function(){
 
   const nameValue = nameInput.value;
   document.querySelector('.name').innerHTML = `${nameValue}`;
+
+
   
   // sconto del 20% per minorenni
   
@@ -79,28 +82,64 @@ generateBtn.addEventListener('click', function(){
     document.querySelector('.offer').innerHTML = `Biglietto standard`;
   }
 
+  // * per generare un nuovo biglietto
+  ticket.classList.remove('d-none');
+  ticketGenerated = false;
 
-
-  // * Far comparire e sparire il biglietto
+  // * Far comparire e sparire il biglietto solo con generateBtn ma qui non è necessario perché questo pulsante deve solo generare e non eliminare 
   // toggle ticket
-  const ticket = document.querySelector('.ticket');
+  // const ticket = document.querySelector('.ticket');
   // se il flag vedo testo è true aggiungo la classe d-none
-  if(ticketGenerated){
-    ticket.classList.remove('d-none');
-    // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
-    ticketGenerated = !ticketGenerated;
-    // console.log('true');
-    // altrimenti la rimuovo
-  }else{
-    ticket.classList.add('d-none');
-    // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
-    ticketGenerated = !ticketGenerated;
-    // console.log('false');
-  }
-
-
+  // if(ticketGenerated){
+  //   ticket.classList.remove('d-none');
+  //   // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
+  //   ticketGenerated = !ticketGenerated;
+  //   // console.log('true');
+  //   // altrimenti la rimuovo
+  // }else{
+  //   ticket.classList.add('d-none');
+  //   // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
+  //   ticketGenerated = !ticketGenerated;
+  //   // console.log('false');
+  // }
 
 });
+
+
+// * Anche in questo modo funziona per Far comparire e sparire il biglietto
+//! generateBtn.addEventListener('click', function(){
+  // // toggle ticket
+  // const ticket = document.querySelector('.ticket');
+  // // se il flag vedo testo è true aggiungo la classe d-none
+  // if(ticketGenerated){
+  //   ticket.classList.remove('d-none');
+  //   // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
+  //   ticketGenerated = !ticketGenerated;
+  //   // console.log('true');
+  //   // altrimenti la rimuovo
+  // }else{
+  //   ticket.classList.add('d-none');
+  //   // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
+  //   ticketGenerated = !ticketGenerated;
+  //   // console.log('false');
+  // }
+//! });
+
+
+
+// * button reset
+resetBtn.addEventListener('click', function(){
+  // * per rimuovere il biglietto 
+  ticket.classList.add('d-none');
+  ticketGenerated = true;
+  
+  // * pulire gli input
+  nameInput.value = "";
+  kmInputs.value = ""; 
+  ageSelect.value = "";
+
+});
+
 
 
 
