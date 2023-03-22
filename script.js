@@ -32,6 +32,8 @@ let userPrice;
 let underagePrice;
 let over65Price;
 
+let ticketGenerated = true;
+
 
 console.log(nameInput);
 console.log(kmInputs);
@@ -48,7 +50,6 @@ generateBtn.addEventListener('click', function(){
 
   const nameValue = nameInput.value;
   document.querySelector('.name').innerHTML = `${nameValue}`;
-
   
   // sconto del 20% per minorenni
   
@@ -78,7 +79,30 @@ generateBtn.addEventListener('click', function(){
     document.querySelector('.offer').innerHTML = `Biglietto standard`;
   }
 
+
+
+  // * Far comparire e sparire il biglietto
+  // toggle ticket
+  const ticket = document.querySelector('.ticket');
+  // se il flag vedo testo è true aggiungo la classe d-none
+  if(ticketGenerated){
+    ticket.classList.remove('d-none');
+    // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
+    ticketGenerated = !ticketGenerated;
+    // console.log('true');
+    // altrimenti la rimuovo
+  }else{
+    ticket.classList.add('d-none');
+    // tutte le volte che clicco il flag diventa il contrario di se stesso quindi da true a false e da false a true
+    ticketGenerated = !ticketGenerated;
+    // console.log('false');
+  }
+
+
+
 });
+
+
 
 
 
